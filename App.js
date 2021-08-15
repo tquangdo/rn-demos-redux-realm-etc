@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Provider } from 'react-redux'
-import storeJS from './store'
-import TaskManagerComponent from './components/TaskManagerComponent'
+import { Provider } from 'react-redux';
+import TaskManagerComponent from './components/TaskManagerComponent';
+import storeJS from './store';
 
 export default function App() {
   return (

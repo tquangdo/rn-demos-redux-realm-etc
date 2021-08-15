@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "this is demo for Redux, Realm...in ReactNative",
+    "githubUrl": "https://github.com/tquangdo/rn-demos-redux-realm-etc.git"
   }
 }
