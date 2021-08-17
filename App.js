@@ -1,8 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
-import TaskManagerComponent from './components/TaskManagerComponent';
+import ContactForm from './components/ContactForm';
 import storeJS from './store';
 
 export default function App() {
@@ -10,17 +9,8 @@ export default function App() {
     <Provider store={storeJS}>
       <>
         <StatusBar style="dark" />
-        <TaskManagerComponent />
+        <ContactForm />
       </>
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
