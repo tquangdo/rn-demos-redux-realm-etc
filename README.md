@@ -13,4 +13,9 @@ scan bar code on `expo go` appstore
 ************************
 ![redux](screenshots/redux.jpeg)
 
-### 2/ realm db
+### 2/ redux-form
+************************
+![redux-form](screenshots/redux-form.jpeg)
+
+### 3/ realm db
+************************

@@ -5,6 +5,9 @@ import { Field, reduxForm } from 'redux-form';
 // import _onSubmit from '../server/submit';
 import validate from '../server/validate';
 import asyncValidate from '../server/asyncValidate';
+import { CONTACT_FORM } from '../FormNames';
+import RemoteSubmitButton from '../containers/RemoteSubmitButton';
+import normalizePhoneNumber from '../normalizePhoneNumber';
 
 // ~~~ FE: C1 ~~~
 // const validate = arg_values => {
@@ -52,6 +55,8 @@ import asyncValidate from '../server/asyncValidate';
 // const isYahooMail = value =>
 //     value && /.+@yahoo\.com/.test(value) ? 'Really? You still use yahoo mail ?' : undefined;
 
+const normalizeUpper = value => value && value.toUpperCase();
+const normalizeLower = value => value && value.toLowerCase();
 // ~~~ FE ~~~
 const _onSubmit = arg_values => {
     alert(`Validation success. Values = ${JSON.stringify(arg_values)}`);
@@ -79,9 +84,16 @@ const ContactComponent = props => {
             <Text style={{ fontSize: 18, fontWeight: 'bold', width: 200, textAlign: 'center', margin: 10 }}>Redux-form example</Text>
             <Text>username: must be hoang, hoangnd, or ndhoang</Text>
             <Text>email: must be sunlight4d@gmail.com</Text>
-            <Field name="username" keyboardType="default" label="Username: " component={renderField}
-            // ~~~ FE: C2 ~~~
-            // validate={[required, maxLength15]}
+            <Field name="username" keyboardType="default" label="Username(lower): " component={renderField}
+                // ~~~ FE: C2 ~~~
+                // validate={[required, maxLength15]}
+                normalize={normalizeLower}
+            />
+            <Field name="fullname" keyboardType="default" label="Fullname(upper): " component={renderField}
+                normalize={normalizeUpper}
+            />
+            <Field name="phoneNumber" keyboardType="numeric" label="Phone(999-999-9999): " component={renderField}
+                normalize={normalizePhoneNumber}
             />
             <Field name="email" keyboardType="email-address" label="Email: " component={renderField}
             // ~~~ FE: C2 ~~~
@@ -93,12 +105,13 @@ const ContactComponent = props => {
             // validate={[required, number, minValue18]}
             // warn={over70YearsOld}
             />
-            <TouchableOpacity onPress={handleSubmit(_onSubmit)} style={{ margin: 10, alignItems: 'center' }} disabled={submitting}>
+            {/* <TouchableOpacity onPress={handleSubmit(_onSubmit)} style={{ margin: 10, alignItems: 'center' }} disabled={submitting}>
                 <Text style={{
                     backgroundColor: 'steelblue', color: 'white', fontSize: 16,
                     height: 37, width: 200, textAlign: 'center', padding: 10
                 }}>Submit</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
+            <RemoteSubmitButton />
             <TouchableOpacity onPress={reset} style={{ margin: 10, alignItems: 'center' }} disabled={submitting}>
                 <Text style={{
                     backgroundColor: 'powderblue', color: 'black', fontSize: 16,
@@ -109,12 +122,13 @@ const ContactComponent = props => {
     );
 }
 const ContactForm = reduxForm({
-    form: 'contact', // variable name phai la "form"
+    form: CONTACT_FORM, // variable name phai la "form"
     // ~~~ FE: C1 ~~~
     // validate, // variable name phai la "validate"
     // warn, // variable name phai la "warn"
     validate,
     asyncValidate,
     asyncBlurFields: ['username', 'email'],
+    onSubmit: _onSubmit // variable name phai la "onSubmit": must either pass handleSubmit() or onSubmit as a prop
 })(ContactComponent);
 export default ContactForm
