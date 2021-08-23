@@ -20,6 +20,3 @@ scan bar code on `expo go` appstore
 ### 3/ realm db
 + still not support for Expo yet: https://expo.canny.io/feature-requests/p/realm
 + https://docs.mongodb.com/realm/sdk/react-native/install/
-
-### 4/ 
-************************
